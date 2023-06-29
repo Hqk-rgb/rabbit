@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "prepare": "husky install" ,
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
@@ -14,9 +15,18 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@vitejs/plugin-vue": "^4.2.3",
+    "cz-customizable": "^7.0.0",
     "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.11.0",
+    "husky": "^8.0.3",
     "vite": "^4.3.9"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }
