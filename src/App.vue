@@ -6,7 +6,8 @@
     <el-row class="mb-4">
       <el-button type="primary">Primary</el-button>
     </el-row>
-    <div class="w-32 h-32 bg-blue-500">111</div>
+    <!-- 一级路由出口组件 -->
+    <RouterView />
   </div>
 </template>
 
