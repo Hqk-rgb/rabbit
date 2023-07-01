@@ -6,3 +6,13 @@ export function getBanner() {
 		url: '/home/banner'
 	})
 }
+export function findNewAPI() {
+	return http({
+		url: '/home/new'
+	})
+}
+export function findHotAPI() {
+	return http({
+		url: '/home/hot'
+	})
+}
