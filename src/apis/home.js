@@ -16,3 +16,13 @@ export function findHotAPI() {
 		url: '/home/hot'
 	})
 }
+/**
+ * @description: 获取所有商品模块
+ * @param {*}
+ * @return {*}
+ */
+export const getGoodsAPI = () => {
+	return http({
+		url: '/home/goods'
+	})
+}
