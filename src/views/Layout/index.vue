@@ -12,11 +12,15 @@ onMounted(() => categoryStore.getCategoryList())
 </script>
 
 <template>
-	<LayoutFixed />
-	<LayoutNav />
-	<LayoutHeader />
-	<RouterView />
-	<LayoutFooter />
+	<div>
+		<LayoutFixed />
+		<LayoutNav />
+		<LayoutHeader />
+		<!-- 添加key 破坏复用机制，强制销毁重建 -->
+		<!-- <RouterView :key="$route.fullPath" /> -->
+		<Router-view />
+		<LayoutFooter />
+	</div>
 </template>
 
 

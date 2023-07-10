@@ -1,19 +1,29 @@
 <script setup>
 import { getCategoryAPI } from '@/apis/category'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watchEffect } from 'vue'
 import { useRoute } from 'vue-router' //used for getting the current path from the url and using it as the category name for the post.
 import { getBanner } from '@/apis/home'
 import GoodsItem from '../Home/components/Item.vue'
+import { onBeforeRouteUpdate } from 'vue-router'
+
 //获取数据
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () => {
-	const res = await getCategoryAPI(route.params.id)
+const getCategory = async (id = route.params.id) => {
+	const res = await getCategoryAPI(id)
 	categoryData.value = res.result
 }
 onMounted(() => {
 	getCategory()
 })
+//下面两种方案是应对点击导航栏页面不跳转的问题(路由缓存)
+onBeforeRouteUpdate(to => {
+	getCategory(to.params.id)
+})
+// watchEffect(() => {
+// 	getCategory()
+// })
+watchEffect(() => {})
 
 //获取轮播图
 const bannerList = ref([])
