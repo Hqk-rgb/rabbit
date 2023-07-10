@@ -1,40 +1,45 @@
 <script setup>
-import { getCategoryAPI } from '@/apis/category'
-import { ref, onMounted, watchEffect } from 'vue'
-import { useRoute } from 'vue-router' //used for getting the current path from the url and using it as the category name for the post.
-import { getBanner } from '@/apis/home'
+// import { getCategoryAPI } from '@/apis/category'
+// import { ref, onMounted, watchEffect } from 'vue'
+// import { useRoute } from 'vue-router' //used for getting the current path from the url and using it as the category name for the post.
+//import { getBanner } from '@/apis/home'
 import GoodsItem from '../Home/components/Item.vue'
-import { onBeforeRouteUpdate } from 'vue-router'
+// import { onBeforeRouteUpdate } from 'vue-router'
+import { useBanner } from './composables/useBanner.js'
+import { useCategory } from './composables/useCategory.js'
 
-//获取数据
-const categoryData = ref({})
-const route = useRoute()
-const getCategory = async (id = route.params.id) => {
-	const res = await getCategoryAPI(id)
-	categoryData.value = res.result
-}
-onMounted(() => {
-	getCategory()
-})
-//下面两种方案是应对点击导航栏页面不跳转的问题(路由缓存)
-onBeforeRouteUpdate(to => {
-	getCategory(to.params.id)
-})
-// watchEffect(() => {
+const { bannerList } = useBanner()
+const { categoryData } = useCategory()
+
+//获取数据(被封装了)
+// const categoryData = ref({})
+// const route = useRoute()
+// const getCategory = async (id = route.params.id) => {
+// 	const res = await getCategoryAPI(id)
+// 	categoryData.value = res.result
+// }
+// onMounted(() => {
 // 	getCategory()
 // })
-watchEffect(() => {})
+// //下面两种方案是应对点击导航栏页面不跳转的问题(路由缓存)
+// onBeforeRouteUpdate(to => {
+// 	getCategory(to.params.id)
+// })
+// // watchEffect(() => {
+// // 	getCategory()
+// // })
+// watchEffect(() => {})
 
-//获取轮播图
-const bannerList = ref([])
+//获取轮播图(被封装了)
+// const bannerList = ref([])
 
-const getBannerList = async () => {
-	const res = await getBanner({ distributionSite: '2' })
-	console.log(res)
-	bannerList.value = res.result
-}
+// const getBannerList = async () => {
+// 	const res = await getBanner({ distributionSite: '2' })
+// 	console.log(res)
+// 	bannerList.value = res.result
+// }
 
-onMounted(() => getBannerList())
+// onMounted(() => getBannerList())
 </script>
 
 <template>
