@@ -2,7 +2,7 @@
 import { getCategoryAPI } from '@/apis/category'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router' //used for getting the current path from the url and using it as the category name for the post.
-
+import { getBanner } from '@/apis/home'
 //获取数据
 const categoryData = ref({})
 const route = useRoute()
@@ -13,6 +13,17 @@ const getCategory = async () => {
 onMounted(() => {
 	getCategory()
 })
+
+//获取轮播图
+const bannerList = ref([])
+
+const getBannerList = async () => {
+	const res = await getBanner({ distributionSite: '2' })
+	console.log(res)
+	bannerList.value = res.result
+}
+
+onMounted(() => getBannerList())
 </script>
 
 <template>
@@ -25,12 +36,29 @@ onMounted(() => {
 					<el-breadcrumb-item>{{ categoryData.name }}</el-breadcrumb-item>
 				</el-breadcrumb>
 			</div>
+			<!-- 轮播图 -->
+			<div class="home-banner">
+				<el-carousel height="500px">
+					<el-carousel-item v-for="item in bannerList" :key="item.id">
+						<img :src="item.imgUrl" alt="" />
+					</el-carousel-item>
+				</el-carousel>
+			</div>
 		</div>
 	</div>
 </template>
 
 
 <style scoped lang="scss">
+.home-banner {
+	width: 1240px;
+	height: 500px;
+
+	img {
+		width: 100%;
+		height: 500px;
+	}
+}
 .top-category {
 	h3 {
 		font-size: 28px;
