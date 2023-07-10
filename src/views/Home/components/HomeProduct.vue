@@ -23,7 +23,7 @@ onMounted(() => getGoods())
 					</strong>
 				</RouterLink>
 				<ul class="goods-list">
-					<li v-for="good in cate.goods" :key="good.id">
+					<li v-for="goods in cate.goods" :key="goods.id">
 						<GoodsItem :goods="goods" />
 					</li>
 				</ul>
