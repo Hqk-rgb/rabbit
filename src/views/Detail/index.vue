@@ -9,7 +9,7 @@ const goods = ref({})
 const getGoods = async () => {
 	const res = await getDetail(route.params.id)
 	goods.value = res.result
-	console.log(goods.value.brand.name)
+	//console.log(goods.value.brand.name)
 }
 onMounted(() => {
 	getGoods()
@@ -113,8 +113,8 @@ onMounted(() => {
 						</div>
 						<!-- 24热榜+专题推荐 -->
 						<div class="goods-aside">
-							<DetailHot></DetailHot>
-							<DetailHot />
+							<DetailHot :hot-type="1"></DetailHot>
+							<DetailHot :hot-type="2" />
 						</div>
 					</div>
 				</div>
