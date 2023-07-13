@@ -4,9 +4,9 @@ import { loginAPI } from '@/apis/user.js'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+//import { useUserStore } from '@/stores/user'
 
-const useStore = useUserStore()
+//const userStore = useUserStore()
 
 //表单校验
 const form = ref({
@@ -42,9 +42,9 @@ const doLogin = () => {
 		console.log(valid)
 		if (valid) {
 			// 使用Pinia管理数据就不需要下面自己调接口了
-			await useStore.getUserInfo({ account, password })
+			//await userStore.getUserInfo({ account, password })
 			//用户登录
-			//await loginAPI({ account, password })
+			await loginAPI({ account, password })
 			// 1. 提示用户
 			ElMessage({ type: 'success', message: '登录成功' })
 			// 2. 跳转首页

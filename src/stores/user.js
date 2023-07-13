@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { loginAPI } from '@/apis/user.js'
+import { loginAPI } from '@/apis/user'
 
 export const useUserStore = defineStore('user', () => {
 	//定义管理用户数的state
@@ -11,5 +11,10 @@ export const useUserStore = defineStore('user', () => {
 		userInfo.value = res.result
 	}
 	//以对象的格式把state和action return
-	return { userInfo, getUserInfo }
+	return (
+		{ userInfo, getUserInfo },
+		{
+			persist: true
+		}
+	)
 })
