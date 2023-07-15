@@ -3,6 +3,8 @@ import axios from 'axios'
 import 'element-plus/theme-chalk/el-message.css'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const http = axios.create({
 	baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -26,11 +28,17 @@ http.interceptors.request.use(
 http.interceptors.response.use(
 	res => res.data,
 	e => {
+		const userStore = useUserStore()
 		//统一错误提示
 		ElMessage({
 			type: 'error',
 			message: e.response.data.message
 		})
+		//401token失效处理
+		if (e.response.status === 401) {
+			userStore.clearUserInfo()
+			router.push('/login')
+		}
 		return Promise.reject(e)
 	}
 )
