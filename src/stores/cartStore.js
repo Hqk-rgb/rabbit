@@ -88,7 +88,8 @@ export const useCartStore = defineStore(
 			singleCheck,
 			isAll,
 			allCheck,
-			clearCart
+			clearCart,
+			updateCartList
 		}
 	},
 	{
