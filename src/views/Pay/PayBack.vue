@@ -1,5 +1,5 @@
 <script setup>
-import { getOrderAPI } from '@/views/apis/pay'
+import { getOrderAPI } from '@/apis/pay'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
