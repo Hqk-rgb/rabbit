@@ -15,3 +15,17 @@ export const createOrderAPI = data => {
 		data
 	})
 }
+export const getUserOrder = params => {
+	return request({
+		url: '/member/order',
+		method: 'GET',
+		params
+	})
+}
+/*
+params: {
+	orderState:0,
+  	page:1,
+  	pageSize:2
+}
+*/
